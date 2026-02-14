@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shafra - Innovate. Code. Transform.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        },
+                        dark: {
+                            900: '#0a0a0f',
+                            800: '#12121a',
+                            700: '#1a1a25',
+                            600: '#252535',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #3b82f6, #d946ef);
+            border-radius: 4px;
+        }
+
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #d946ef 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-animated {
+            background: linear-gradient(90deg, #3b82f6, #d946ef, #8b5cf6, #3b82f6);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-x 5s ease infinite;
+        }
+
+        /* Animated gradient border */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(217, 70, 239, 0.2));
+            border-radius: 16px;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, #3b82f6, #d946ef, #8b5cf6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Navigation */
+        .nav-hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .nav-visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Service card hover */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Portfolio card */
+        .portfolio-card {
+            overflow: hidden;
+        }
+        .portfolio-card img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .portfolio-card:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-overlay {
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* Counter animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Testimonial */
+        .testimonial-slide {
+            transition: all 0.5s ease;
+        }
+
+        /* Particle canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Section reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger children */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .stagger-children.active > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-children.active > *:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-children.active > *:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-children.active > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-children.active > *:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-children.active > *:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-children.active > *:nth-child(6) { transition-delay: 0.6s; }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* Team card */
+        .team-card {
+            transition: all 0.4s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        .team-card .team-social {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        .team-card:hover .team-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pricing card */
+        .pricing-card {
+            transition: all 0.4s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        .pricing-popular {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        /* Input focus */
+        .input-field {
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Blob animation */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Typing cursor */
+        .typing-cursor {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Code snippet styling */
+        .code-block {
+            background: linear-gradient(135deg, #1a1a25 0%, #252535 100%);
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 nav-hidden transition-all duration-500">
+        <div class="glass">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                            <i class="fas fa-code text-white text-lg"></i>
+                        </div>
+                        <span class="font-display font-bold text-2xl text-white">Shafra</span>
+                    </a>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">About</a>
+                        <a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Services</a>
+                        <a href="#portfolio" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Portfolio</a>
+                        <a href="#pricing" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Pricing</a>
+                        <a href="#contact" class="btn-primary px-6 py-2.5 rounded-full text-white text-sm font-medium">Get Started</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-50 glass">
+        <div class="flex flex-col h-full p-8">
+            <div class="flex justify-between items-center mb-12">
+                <span class="font-display font-bold text-2xl text-white">Shafra</span>
+                <button id="mobile-menu-close" class="text-white p-2">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <a href="#home" class="text-2xl font-medium text-white mobile-link">Home</a>
+                <a href="#about" class="text-2xl font-medium text-gray-400 hover:text-white mobile-link">About</a>
+                <a href="#services" class="text-2xl font-medium text-gray-400 hover:text-white mobile-link">Services</a>
+                <a href="#portfolio" class="text-2xl font-medium text-gray-400 hover:text-white mobile-link">Portfolio</a>
+                <a href="#pricing" class="text-2xl font-medium text-gray-400 hover:text-white mobile-link">Pricing</a>
+                <a href="#contact" class="text-2xl font-medium text-gray-400 hover:text-white mobile-link">Contact</a>
+            </div>
+            <div class="mt-auto">
+                <a href="#contact" class="btn-primary block text-center px-8 py-4 rounded-full text-white font-medium">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="blob w-96 h-96 bg-primary-500 rounded-full top-0 left-0 animate-blob"></div>
+        <div class="blob w-96 h-96 bg-accent-500 rounded-full bottom-0 right-0 animate-blob" style="animation-delay: 2s;"></div>
+        <div class="blob w-80 h-80 bg-purple-500 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-blob" style="animation-delay: 4s;"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left reveal">
+                    <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full mb-6">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm text-gray-300">Available for new projects</span>
+                    </div>
+
+                    <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-tight mb-6">
+                        Innovate.<br>
+                        <span class="gradient-text-animated">Code.</span><br>
+                        Transform.
+                    </h1>
+
+                    <p class="text-xl text-gray-400 mb-8 max-w-lg mx-auto lg:mx-0">
+                        We craft cutting-edge digital solutions that propel your business into the future. From concept to deployment, we code excellence.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+                        <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-white font-medium text-center">
+                            Start Your Project
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#portfolio" class="btn-secondary px-8 py-4 rounded-full text-white font-medium text-center">
+                            View Our Work
+                        </a>
+                    </div>
+
+                    <div class="flex items-center justify-center lg:justify-start space-x-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text counter" data-target="250">0</div>
+                            <div class="text-sm text-gray-500">Projects</div>
+                        </div>
+                        <div class="w-px h-12 bg-gray-700"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text counter" data-target="50">0</div>
+                            <div class="text-sm text-gray-500">Clients</div>
+                        </div>
+                        <div class="w-px h-12 bg-gray-700"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text counter" data-target="8">0</div>
+                            <div class="text-sm text-gray-500">Years</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="relative reveal" style="transition-delay: 0.2s;">
+                    <!-- Main Code Window -->
+                    <div class="glass-card rounded-2xl p-6 animate-float relative z-10">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="ml-4 text-sm text-gray-500">shafra-app.js</span>
+                        </div>
+                        <pre class="code-block rounded-xl p-4 text-sm overflow-x-auto"><code class="language-javascript"><span class="text-purple-400">const</span> <span class="text-blue-400">shafra</span> = {
+  <span class="text-purple-400">mission</span>: <span class="text-green-400">'Innovate'</span>,
+  <span class="text-purple-400">vision</span>: <span class="text-green-400">'Transform'</span>,
+  <span class="text-purple-400">deliver</span>: <span class="text-green-400">'Excellence'</span>
+};
+
+<span class="text-purple-400">async function</span> <span class="text-yellow-400">createSolution</span>(<span class="text-blue-400">client</span>) {
+  <span class="text-purple-400">const</span> <span class="text-blue-400">innovation</span> = <span class="text-purple-400">await</span> <span class="text-blue-400">shafra</span>.<span class="text-yellow-400">ideate</span>();
+  <span class="text-purple-400">const</span> <span class="text-blue-400">solution</span> = <span class="text-purple-400">await</span> <span class="text-blue-400">shafra</span>.<span class="text-yellow-400">build</span>(<span class="text-blue-400">innovation</span>);
+  <span class="text-purple-400">return</span> <span class="text-blue-400">solution</span>.<span class="text-yellow-400">deliver</span>(<span class="text-blue-400">client</span>);
+}</code></pre>
+                    </div>
+
+                    <!-- Floating Cards -->
+                    <div class="absolute -top-4 -right-4 glass-card rounded-xl p-4 animate-float-delayed z-20">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium">Build Successful</div>
+                                <div class="text-xs text-gray-500">Deployed to production</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-4 -left-4 glass-card rounded-xl p-4 animate-float z-20">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-400 to-purple-500 flex items-center justify-center">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium">Team Online</div>
+                                <div class="text-xs text-gray-500">12 developers active</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack Icons -->
+                    <div class="absolute top-1/2 -right-8 transform translate-y-1/2 glass-card rounded-xl p-3 animate-pulse-slow">
+                        <div class="flex flex-col space-y-3">
+                            <i class="fab fa-react text-2xl text-blue-400"></i>
+                            <i class="fab fa-node text-2xl text-green-500"></i>
+                            <i class="fab fa-python text-2xl text-yellow-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- About Image -->
+                <div class="relative reveal">
+                    <div class="gradient-border p-1 rounded-2xl">
+                        <div class="relative rounded-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Shafra Team" class="w-full h-auto">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Experience Badge -->
+                    <div class="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6">
+                        <div class="text-5xl font-bold gradient-text">8+</div>
+                        <div class="text-gray-400">Years of Excellence</div>
+                    </div>
+                </div>
+
+                <!-- About Content -->
+                <div class="reveal">
+                    <span class="text-primary-400 font-medium text-sm uppercase tracking-wider">About Us</span>
+                    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                        We're Building the <span class="gradient-text">Digital Future</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-6">
+                        Founded in 2016, Shafra has grown from a small team of passionate developers to a full-service digital agency. We combine technical expertise with creative thinking to deliver solutions that make a difference.
+                    </p>
+                    <p class="text-gray-400 mb-8">
+                        Our approach is simple: understand deeply, build smartly, deliver excellently. Every line of code we write is crafted with purpose and precision.
+                    </p>
+
+                    <!-- Skills -->
+                    <div class="space-y-4 mb-8">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Web Development</span>
+                                <span class="text-sm text-gray-500">95%</span>
+                            </div>
+                            <div class="h-2 bg-dark-600 rounded-full overflow-hidden">
+                                <div class="progress-bar h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Mobile Apps</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="h-2 bg-dark-600 rounded-full overflow-hidden">
+                                <div class="progress-bar h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">Cloud Solutions</span>
+                                <span class="text-sm text-gray-500">88%</span>
+                            </div>
+                            <div class="h-2 bg-dark-600 rounded-full overflow-hidden">
+                                <div class="progress-bar h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full" data-width="88"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <a href="#contact" class="btn-primary px-8 py-3 rounded-full text-white font-medium">
+                            Work With Us
+                        </a>
+                        <a href="#services" class="text-primary-400 hover:text-primary-300 font-medium flex items-center">
+                            Our Services
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="blob w-72 h-72 bg-primary-600 rounded-full top-1/2 right-0 transform translate-x-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-accent-400 font-medium text-sm uppercase tracking-wider">Our Services</span>
+                <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                    Solutions That <span class="gradient-text">Drive Growth</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    From web applications to AI integration, we offer comprehensive digital services tailored to your business needs.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+                <!-- Service 1 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-laptop-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">Web Development</h3>
+                    <p class="text-gray-400 mb-4">
+                        Custom web applications built with modern frameworks like React, Next.js, and Node.js for optimal performance.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Responsive Design</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Progressive Web Apps</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>API Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-mobile-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">Mobile Apps</h3>
+                    <p class="text-gray-400 mb-4">
+                        Native and cross-platform mobile applications that deliver seamless user experiences on iOS and Android.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>iOS Development</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Android Development</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>React Native / Flutter</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-cloud text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">Cloud Solutions</h3>
+                    <p class="text-gray-400 mb-4">
+                        Scalable cloud infrastructure and DevOps services to ensure your applications run smoothly and securely.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>AWS / Azure / GCP</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Docker & Kubernetes</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>CI/CD Pipelines</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-paint-brush text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-4">
+                        User-centered design that combines aesthetics with functionality to create memorable digital experiences.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>User Research</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Prototyping</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Design Systems</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-accent-500 to-purple-500 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-brain text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">AI Integration</h3>
+                    <p class="text-gray-400 mb-4">
+                        Leverage the power of artificial intelligence to automate processes and gain valuable business insights.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Machine Learning</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>NLP & Chatbots</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Predictive Analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card glass-card rounded-2xl p-8">
+                    <div class="service-icon w-16 h-16 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-400 flex items-center justify-center mb-6 transition-transform duration-300">
+                        <i class="fas fa-shield-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-3">Cybersecurity</h3>
+                    <p class="text-gray-400 mb-4">
+                        Protect your digital assets with comprehensive security assessments and implementation strategies.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Security Audits</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Penetration Testing</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Compliance Consulting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-primary-400 font-medium text-sm uppercase tracking-wider">Portfolio</span>
+                <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                    Our Recent <span class="gradient-text">Projects</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    Explore our portfolio of successful projects that have helped businesses transform and grow.
+                </p>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+                <!-- Project 1 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="FinTech Dashboard" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-primary-400 text-sm font-medium mb-2">FinTech</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">Nexus Banking Platform</h3>
+                            <p class="text-gray-400 text-sm">A comprehensive digital banking solution with real-time analytics.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs">Node.js</span>
+                            <span class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80" alt="E-commerce App" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-accent-400 text-sm font-medium mb-2">E-Commerce</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">ShopWave Mobile</h3>
+                            <p class="text-gray-400 text-sm">Cross-platform shopping app with AR product visualization.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-accent-500/20 text-accent-300 rounded-full text-xs">Flutter</span>
+                            <span class="px-3 py-1 bg-accent-500/20 text-accent-300 rounded-full text-xs">Firebase</span>
+                            <span class="px-3 py-1 bg-accent-500/20 text-accent-300 rounded-full text-xs">AR Kit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80" alt="Healthcare Platform" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-green-400 text-sm font-medium mb-2">Healthcare</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">MediConnect</h3>
+                            <p class="text-gray-400 text-sm">Telemedicine platform connecting patients with specialists.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Vue.js</span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Python</span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">WebRTC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Analytics Dashboard" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-yellow-400 text-sm font-medium mb-2">Analytics</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">DataPulse Dashboard</h3>
+                            <p class="text-gray-400 text-sm">Real-time business intelligence dashboard with AI insights.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs">Next.js</span>
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs">D3.js</span>
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-xs">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="SaaS Platform" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-purple-400 text-sm font-medium mb-2">SaaS</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">TaskFlow Pro</h3>
+                            <p class="text-gray-400 text-sm">Project management SaaS with AI-powered task automation.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">GraphQL</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-card glass-card rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="relative aspect-video">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80" alt="IoT Platform" class="w-full h-full object-cover">
+                        <div class="portfolio-overlay absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent flex flex-col justify-end p-6">
+                            <span class="text-cyan-400 text-sm font-medium mb-2">IoT</span>
+                            <h3 class="font-display font-semibold text-xl text-white mb-2">SmartCity Hub</h3>
+                            <p class="text-gray-400 text-sm">IoT platform for smart city infrastructure management.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">IoT Core</span>
+                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">Go</span>
+                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs">MQTT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12">
+                <button class="btn-secondary px-8 py-4 rounded-full text-white font-medium inline-flex items-center">
+                    View All Projects
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-accent-600/10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center reveal">
+                    <div class="text-5xl font-bold gradient-text mb-2 counter" data-target="250">0</div>
+                    <div class="text-gray-400">Projects Completed</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.1s;">
+                    <div class="text-5xl font-bold gradient-text mb-2 counter" data-target="50">0</div>
+                    <div class="text-gray-400">Happy Clients</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="text-5xl font-bold gradient-text mb-2 counter" data-target="25">0</div>
+                    <div class="text-gray-400">Team Members</div>
+                </div>
+                <div class="text-center reveal" style="transition-delay: 0.3s;">
+                    <div class="text-5xl font-bold gradient-text mb-2 counter" data-target="15">0</div>
+                    <div class="text-gray-400">Awards Won</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 relative">
+        <div class="blob w-96 h-96 bg-accent-600 rounded-full bottom-0 left-0 transform -translate-x-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-accent-400 font-medium text-sm uppercase tracking-wider">Our Team</span>
+                <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                    Meet the <span class="gradient-text">Experts</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    Our diverse team of talented developers, designers, and strategists is passionate about creating exceptional digital experiences.
+                </p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+                <!-- Team Member 1 -->
+                <div class="team-card glass-card rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="CEO" class="w-full aspect-square object-cover">
+                        <div class="team-social absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display font-semibold text-lg">Ahmed Hassan</h3>
+                        <p class="text-primary-400 text-sm">CEO & Founder</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card glass-card rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="CTO" class="w-full aspect-square object-cover">
+                        <div class="team-social absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display font-semibold text-lg">Sarah Mitchell</h3>
+                        <p class="text-accent-400 text-sm">CTO</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card glass-card rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Lead Developer" class="w-full aspect-square object-cover">
+                        <div class="team-social absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display font-semibold text-lg">David Chen</h3>
+                        <p class="text-green-400 text-sm">Lead Developer</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card glass-card rounded-2xl overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Design Lead" class="w-full aspect-square object-cover">
+                        <div class="team-social absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center text-white hover:bg-primary-500 transition-colors">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display font-semibold text-lg">Emma Wilson</h3>
+                        <p class="text-purple-400 text-sm">Design Lead</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-primary-400 font-medium text-sm uppercase tracking-wider">Testimonials</span>
+                <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                    What Our <span class="gradient-text">Clients Say</span>
+                </h2>
+            </div>
+
+            <!-- Testimonials Slider -->
+            <div class="relative reveal">
+                <div class="overflow-hidden">
+                    <div id="testimonial-track" class="flex transition-transform duration-500">
+                        <!-- Testimonial 1 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="glass-card rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+                                <div class="flex flex-col md:flex-row items-center gap-8">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="Client" class="w-24 h-24 rounded-full object-cover">
+                                    <div>
+                                        <div class="flex text-yellow-400 mb-4">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <p class="text-xl text-gray-300 mb-6 italic">
+                                            "Shafra transformed our outdated systems into a modern, scalable platform. Their team's expertise and dedication exceeded our expectations."
+                                        </p>
+                                        <div>
+                                            <h4 class="font-semibold text-white">Michael Roberts</h4>
+                                            <p class="text-gray-500">CTO, TechVentures Inc.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="glass-card rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+                                <div class="flex flex-col md:flex-row items-center gap-8">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="Client" class="w-24 h-24 rounded-full object-cover">
+                                    <div>
+                                        <div class="flex text-yellow-400 mb-4">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <p class="text-xl text-gray-300 mb-6 italic">
+                                            "The mobile app Shafra built for us has received incredible user feedback. Their attention to UX detail is unmatched in the industry."
+                                        </p>
+                                        <div>
+                                            <h4 class="font-semibold text-white">Jennifer Lopez</h4>
+                                            <p class="text-gray-500">Product Director, ShopWave</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="glass-card rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+                                <div class="flex flex-col md:flex-row items-center gap-8">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80" alt="Client" class="w-24 h-24 rounded-full object-cover">
+                                    <div>
+                                        <div class="flex text-yellow-400 mb-4">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <p class="text-xl text-gray-300 mb-6 italic">
+                                            "Working with Shafra on our AI integration was a game-changer. They delivered on time, on budget, and above expectations."
+                                        </p>
+                                        <div>
+                                            <h4 class="font-semibold text-white">James Anderson</h4>
+                                            <p class="text-gray-500">CEO, DataPulse Analytics</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-center items-center gap-4 mt-8">
+                    <button id="prev-testimonial" class="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="flex gap-2">
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-primary-500" data-index="0"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600" data-index="1"></button>
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600" data-index="2"></button>
+                    </div>
+                    <button id="next-testimonial" class="w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 relative">
+        <div class="blob w-80 h-80 bg-primary-600 rounded-full top-0 left-0 transform -translate-x-1/2"></div>
+        <div class="blob w-80 h-80 bg-accent-600 rounded-full bottom-0 right-0 transform translate-x-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-accent-400 font-medium text-sm uppercase tracking-wider">Pricing</span>
+                <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                    Flexible <span class="gradient-text">Plans</span>
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    Choose the perfect plan for your project needs. All plans include our commitment to quality and support.
+                </p>
+            </div>
+
+            <!-- Pricing Toggle -->
+            <div class="flex justify-center items-center gap-4 mb-12 reveal">
+                <span class="text-gray-400" id="monthly-label">Monthly</span>
+                <button id="pricing-toggle" class="relative w-16 h-8 rounded-full bg-dark-600 transition-colors">
+                    <span class="absolute top-1 left-1 w-6 h-6 rounded-full bg-primary-500 transition-transform" id="toggle-circle"></span>
+                </button>
+                <span class="text-white" id="yearly-label">Yearly <span class="text-accent-400 text-sm">(Save 20%)</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-8 stagger-children">
+                <!-- Starter -->
+                <div class="pricing-card glass-card rounded-2xl p-8">
+                    <h3 class="font-display font-semibold text-xl mb-2">Starter</h3>
+                    <p class="text-gray-400 text-sm mb-6">Perfect for small projects</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-white price-value" data-monthly="2,999" data-yearly="2,399">$2,999</span>
+                        <span class="text-gray-400">/project</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Single Page Application
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Responsive Design
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Basic SEO
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>1 Month Support
+                        </li>
+                    </ul>
+                    <button class="btn-secondary w-full py-3 rounded-full text-white font-medium">Get Started</button>
+                </div>
+
+                <!-- Professional -->
+                <div class="pricing-card pricing-popular glass-card rounded-2xl p-8 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="px-4 py-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full text-sm font-medium text-white">Most Popular</span>
+                    </div>
+                    <h3 class="font-display font-semibold text-xl mb-2">Professional</h3>
+                    <p class="text-gray-400 text-sm mb-6">For growing businesses</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-white price-value" data-monthly="7,999" data-yearly="6,399">$7,999</span>
+                        <span class="text-gray-400">/project</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Full-Stack Application
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Custom UI/UX Design
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Database Integration
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>API Development
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>3 Months Support
+                        </li>
+                    </ul>
+                    <button class="btn-primary w-full py-3 rounded-full text-white font-medium">Get Started</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card glass-card rounded-2xl p-8">
+                    <h3 class="font-display font-semibold text-xl mb-2">Enterprise</h3>
+                    <p class="text-gray-400 text-sm mb-6">Large scale solutions</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-white price-value" data-monthly="Custom" data-yearly="Custom">Custom</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Multi-Platform Solution
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Dedicated Team
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>Cloud Infrastructure
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>24/7 Priority Support
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check text-green-400 mr-3"></i>SLA Guarantee
+                        </li>
+                    </ul>
+                    <button class="btn-secondary w-full py-3 rounded-full text-white font-medium">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div class="reveal">
+                    <span class="text-primary-400 font-medium text-sm uppercase tracking-wider">Contact Us</span>
+                    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 mb-6">
+                        Let's Start Your <span class="gradient-text">Project</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8">
+                        Ready to transform your ideas into reality? Get in touch with us and let's discuss how we can help your business grow.
+                    </p>
+
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-primary-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Address</h4>
+                                <p class="text-gray-400">123 Innovation Drive, Tech District<br>San Francisco, CA 94102</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-accent-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-accent-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Email</h4>
+                                <p class="text-gray-400">hello@shafra.io</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-green-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Phone</h4>
+                                <p class="text-gray-400">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-500/20 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-500/20 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-500/20 transition-all">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-lg glass flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-500/20 transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <form id="contact-form" class="glass-card rounded-2xl p-8">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                                <input type="text" class="input-field w-full px-4 py-3 rounded-lg bg-dark-800 border border-gray-700 text-white focus:outline-none" placeholder="John" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                                <input type="text" class="input-field w-full px-4 py-3 rounded-lg bg-dark-800 border border-gray-700 text-white focus:outline-none" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" class="input-field w-full px-4 py-3 rounded-lg bg-dark-800 border border-gray-700 text-white focus:outline-none" placeholder="john@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Project Type</label>
+                            <select class="input-field w-full px-4 py-3 rounded-lg bg-dark-800 border border-gray-700 text-white focus:outline-none">
+                                <option>Web Development</option>
+                                <option>Mobile App</option>
+                                <option>Cloud Solution</option>
+                                <option>AI Integration</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea class="input-field w-full px-4 py-3 rounded-lg bg-dark-800 border border-gray-700 text-white focus:outline-none resize-none" rows="4" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full py-4 rounded-lg text-white font-medium">
+                            Send Message
+                            <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <a href="#" class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center">
+                            <i class="fas fa-code text-white text-lg"></i>
+                        </div>
+                        <span class="font-display font-bold text-2xl text-white">Shafra</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Innovate. Code. Transform.<br>
+                        Building the digital future, one line at a time.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mobile Apps</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cloud Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">AI Integration</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-white transition-colors">Team</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Newsletter</h4>
+                    <p class="text-gray-400 text-sm mb-4">Subscribe to our newsletter for updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email" class="input-field flex-1 px-4 py-2 rounded-l-lg bg-dark-800 border border-gray-700 text-white text-sm focus:outline-none">
+                        <button class="btn-primary px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 Shafra. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 glass-card rounded-lg p-4 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white" id="toast-message">Message sent successfully!</span>
+        </div>
+    </div>
+
+    <script>
+        // Particle System
+        class ParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particles-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: null, y: null };
+                this.init();
+            }
+
+            init() {
+                this.resize();
+                this.createParticles();
+                this.addEventListeners();
+                this.animate();
+            }
+
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+
+            createParticles() {
+                const particleCount = Math.min(50, Math.floor(window.innerWidth / 30));
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 2 + 1,
+                        speedX: (Math.random() - 0.5) * 0.5,
+                        speedY: (Math.random() - 0.5) * 0.5,
+                        color: Math.random() > 0.5 ? 'rgba(59, 130, 246, 0.5)' : 'rgba(217, 70, 239, 0.5)'
+                    });
+                }
+            }
+
+            addEventListeners() {
+                window.addEventListener('resize', () => this.resize());
+                window.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach((particle, index) => {
+                    // Move particle
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    // Mouse interaction
+                    if (this.mouse.x && this.mouse.y) {
+                        const dx = this.mouse.x - particle.x;
+                        const dy = this.mouse.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 100) {
+                            const force = (100 - distance) / 100;
+                            particle.x -= dx * force * 0.02;
+                            particle.y -= dy * force * 0.02;
+                        }
+                    }
+
+                    // Wrap around edges
+                    if (particle.x < 0) particle.x = this.canvas.width;
+                    if (particle.x > this.canvas.width) particle.x = 0;
+                    if (particle.y < 0) particle.y = this.canvas.height;
+                    if (particle.y > this.canvas.height) particle.y = 0;
+
+                    // Draw particle
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = particle.color;
+                    this.ctx.fill();
+
+                    // Draw connections
+                    this.particles.slice(index + 1).forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(particle.x, particle.y);
+                            this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                            this.ctx.strokeStyle = `rgba(100, 100, 255, ${0.2 * (1 - distance / 100)})`;
+                            this.ctx.stroke();
+                        }
+                    });
+                });
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize particle system
+        new ParticleSystem();
+
+        // Navigation scroll behavior
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.remove('nav-hidden');
+                navbar.classList.add('nav-visible');
+            } else {
+                navbar.classList.add('nav-hidden');
+                navbar.classList.remove('nav-visible');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal, .stagger-children');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += step;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    };
+
+                    updateCounter();
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // Progress bar animation
+        const progressBars = document.querySelectorAll('.progress-bar');
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                    progressObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        progressBars.forEach(bar => progressObserver.observe(bar));
+
+        // Testimonials slider
+        const testimonialTrack = document.getElementById('testimonial-track');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-primary-500', i === currentSlide);
+                dot.classList.toggle('bg-gray-600', i !== currentSlide);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            goToSlide((currentSlide + 1) % totalSlides);
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.getAttribute('data-index')));
+            });
+        });
+
+        // Auto-advance testimonials
+        setInterval(() => {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }, 5000);
+
+        // Pricing toggle
+        const pricingToggle = document.getElementById('pricing-toggle');
+        const toggleCircle = document.getElementById('toggle-circle');
+        const monthlyLabel = document.getElementById('monthly-label');
+        const yearlyLabel = document.getElementById('yearly-label');
+        const priceValues = document.querySelectorAll('.price-value');
+        let isYearly = true;
+
+        pricingToggle.addEventListener('click', () => {
+            isYearly = !isYearly;
+            toggleCircle.style.transform = isYearly ? 'translateX(32px)' : 'translateX(0)';
+            monthlyLabel.classList.toggle('text-white', !isYearly);
+            monthlyLabel.classList.toggle('text-gray-400', isYearly);
+            yearlyLabel.classList.toggle('text-white', isYearly);
+            yearlyLabel.classList.toggle('text-gray-400', !isYearly);
+
+            priceValues.forEach(price => {
+                const value = isYearly ? price.getAttribute('data-yearly') : price.getAttribute('data-monthly');
+                price.textContent = value.startsWith('$') ? value : '$' + value;
+            });
+        });
+
+        // Initialize pricing toggle
+        toggleCircle.style.transform = 'translateX(32px)';
+
+        // Contact form
+        const contactForm = document.getElementById('contact-form');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Message sent successfully! We\'ll get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typing animation for hero text
+        const typingElement = document.querySelector('.typing-effect');
+        if (typingElement) {
+            const text = typingElement.textContent;
+            typingElement.textContent = '';
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    typingElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+
+            setTimeout(typeWriter, 1000);
+        }
+    </script>
+</body>
+</html>
